@@ -3,7 +3,7 @@ spring:
     name: login
   datasource:
     name: defaultDataSource
-    url: jdbc:mysql://localhost:3306/test?useSSL=true&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/rewardsystem?useSSL=true&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
     password: 123456
 server:
