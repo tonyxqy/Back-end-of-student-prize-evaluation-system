@@ -90,6 +90,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>StuInfo</finalName>
     </build>
 
 </project>

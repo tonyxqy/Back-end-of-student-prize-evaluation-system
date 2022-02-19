@@ -15,6 +15,7 @@ public class StuInfo {
     String name; //姓名
     String sex; //性别
     String major; //专业
+    int grade; //年级
     int applyAdd; //权限_添加申请
     int modifyPersonalInfo; //权限_修改个人申请信息
     int modifyOtherInfo; //权限_修改他人申请信息
