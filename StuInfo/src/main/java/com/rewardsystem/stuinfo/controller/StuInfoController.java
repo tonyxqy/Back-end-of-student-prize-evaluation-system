@@ -29,12 +29,12 @@ public class StuInfoController {
 //    }
 
     //更新用户信息
-//    @PutMapping("/update")
-//    public Boolean update(@RequestBody StuInfo stuInfo) {
-//        //更新数据库中指定用户信息
-//        int status = stuInfoMapper.updateById(stuInfo);
-//        return status == 1;
-//    }
+    @PutMapping("/update")
+    public Boolean update(@RequestBody StuInfo stuInfo) {
+        //更新数据库中指定用户信息
+        int status = stuInfoMapper.updateById(stuInfo);
+        return status == 1;
+    }
 
     //返回用户权限
     @PostMapping("authority")
@@ -71,17 +71,17 @@ public class StuInfoController {
     }
 
     //修改用户权限
-    @PutMapping("/change")
-    public Boolean change(@RequestBody HashMap<String, Object> req) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("username", req.get("username"));
-        List<User> userList = userMapper.selectByMap(map);
-        if (userList.isEmpty()) {
-            return false;
-        } else {
-            userList.get(0).setAuthority((String) req.get("authority"));
-            userMapper.updateById(userList.get(0));
-            return true;
-        }
-    }
+//    @PutMapping("/change")
+//    public Boolean change(@RequestBody HashMap<String, Object> req) {
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put("id", req.get("id"));
+//        List<StuInfo> stuInfoList = stuInfoMapper.selectByMap(map);
+//        if (stuInfoList.isEmpty()) {
+//            return false;
+//        } else {
+//            switch (map)
+//            stuInfoMapper.updateById(stuInfoList.get(0));
+//            return true;
+//        }
+//    }
 }
