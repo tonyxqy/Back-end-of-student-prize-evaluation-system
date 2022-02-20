@@ -39,4 +39,17 @@ class StuInfoApplicationTests {
         System.out.println(userList.get(0).getAuthority());
     }
 
+    @Test
+    void changeAuthority() {
+        HashMap<String, Object> req = new HashMap<>();
+        req.put("username", "19120010");
+        req.put("authority", "teacher");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", req.get("username"));
+        List<User> userList = userMapper.selectByMap(map);
+        System.out.println(userList);
+        userList.get(0).setAuthority((String) req.get("authority"));
+        userMapper.updateById(userList.get(0));
+    }
+
 }

@@ -69,4 +69,19 @@ public class StuInfoController {
         }
         return flag;
     }
+
+    //修改用户权限
+    @PutMapping("/change")
+    public Boolean change(@RequestBody HashMap<String, Object> req) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", req.get("username"));
+        List<User> userList = userMapper.selectByMap(map);
+        if (userList.isEmpty()) {
+            return false;
+        } else {
+            userList.get(0).setAuthority((String) req.get("authority"));
+            userMapper.updateById(userList.get(0));
+            return true;
+        }
+    }
 }
