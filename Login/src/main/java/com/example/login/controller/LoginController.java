@@ -45,4 +45,10 @@ public class LoginController {
         info.put("Error", "Access deny");
         return info;
     }
+
+    @DeleteMapping("/delete")
+    public Boolean delete(@RequestBody HashMap<String, Object>map) {
+        int status = userMapper.deleteByMap(map);
+        return status == 1;
+    }
 }

@@ -31,6 +31,14 @@ public class ApplicationController {
         return status == 1;
     }
 
+    //删除申请表
+    @DeleteMapping("/delete")
+    Boolean delete(@RequestBody HashMap<String, Object> map) {
+        int status = applicationMapper.deleteByMap(map);
+        System.out.println("delete =>" + map.get("id") + status);
+        return status == 1;
+    }
+
 //
 //    @PostMapping("/get")
 //    Application get(@RequestBody HashMap<String, Object> map) {

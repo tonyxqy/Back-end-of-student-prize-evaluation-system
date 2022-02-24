@@ -72,6 +72,13 @@ public class StuInfoController {
         return flag;
     }
 
+    //删除用户信息表
+    @DeleteMapping("/delete")
+    Boolean delete(@RequestBody HashMap<String, Object> map) {
+        int status = stuInfoMapper.deleteByMap(map);
+        return status == 1;
+    }
+
     //修改用户权限
 //    @PutMapping("/change")
 //    public Boolean change(@RequestBody HashMap<String, Object> req) {
