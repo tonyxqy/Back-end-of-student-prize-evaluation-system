@@ -87,7 +87,7 @@
                 </executions>
             </plugin>
         </plugins>
-        <finalName>Application</finalName>
+        <finalName>Admin</finalName>
     </build>
 
 </project>
