@@ -38,12 +38,14 @@ public class StuInfoController {
 
     //返回用户权限
     @PostMapping("authority")
-    public String authority(@RequestBody HashMap<String, Object> map) {
-        List<User> userList = userMapper.selectByMap(map);
-        if (userList.isEmpty()) {
-            return "Username Not Found";
+    public HashMap<String, Object> authority(@RequestBody HashMap<String, Object> map) {
+        List<StuInfo> stuInfoList = stuInfoMapper.selectByMap(map);
+        if (stuInfoList.isEmpty()) {
+            HashMap<String, Object> error = new HashMap<>();
+            error.put("error", "User not found");
+            return error;
         }
-        return userList.get(0).getAuthority();
+        return stuInfoList.get(0).getAuthority();
     }
 
     //得到指定用户信息

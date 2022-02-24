@@ -6,5 +6,20 @@ spring:
     url: jdbc:mysql://localhost:3306/rewardsystem?useSSL=true&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
     password: 123456
+  boot:
+    admin:
+      client:
+        url: http://localhost:9091
 server:
   port: 8080
+
+# 配置MyBatisPlus日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

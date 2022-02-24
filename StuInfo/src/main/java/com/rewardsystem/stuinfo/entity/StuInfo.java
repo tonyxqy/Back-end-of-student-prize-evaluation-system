@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +27,18 @@ public class StuInfo {
     int readRwardInfo; //权限_查阅获奖信息
     int award; //权限_评奖评优
     int courseContestsLoading; //权限_录入学科竞赛分类表
+
+    public HashMap<String, Object> getAuthority() {
+        HashMap<String, Object> res = new HashMap<>();
+        res.put("applyAdd", getApplyAdd());
+        res.put("modifyPersonalInfo", getModifyPersonalInfo());
+        res.put("modifyOtherInfo", getModifyOtherInfo());
+        res.put("auditCommand", getAuditCommand());
+        res.put("auditPass", getAuditPass());
+        res.put("bulkImport", getBulkImport());
+        res.put("readRwardInfo", getReadRwardInfo());
+        res.put("award", getAward());
+        res.put("courseContestsLoading", getCourseContestsLoading());
+        return res;
+    }
 }
