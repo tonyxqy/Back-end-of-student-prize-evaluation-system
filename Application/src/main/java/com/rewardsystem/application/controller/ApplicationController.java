@@ -55,4 +55,17 @@ public class ApplicationController {
     List<Application> select(@RequestBody HashMap<String, Object> map) {
         return applicationMapper.selectByMap(map);
     }
+
+    @PostMapping("/status")
+    Boolean status(@RequestBody HashMap<String, Object> info) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", info.get("id"));
+        List<Application> applicationList = applicationMapper.selectByMap(map);
+        if (applicationList.isEmpty()) {
+            return false;
+        }
+        applicationList.get(0).setDqzt((Integer) info.get("dqzt"));
+        applicationMapper.updateById(applicationList.get(0));
+        return true;
+    }
 }
