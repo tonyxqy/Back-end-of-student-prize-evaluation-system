@@ -68,4 +68,9 @@ public class ApplicationController {
         applicationMapper.updateById(applicationList.get(0));
         return true;
     }
+
+    @GetMapping("/get")
+    List<Application> get() {
+        return applicationMapper.selectList(null);
+    }
 }
