@@ -7,6 +7,7 @@ import com.rewardsystem.stuinfo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -20,13 +21,13 @@ public class StuInfoController {
     @Autowired
     UserMapper userMapper;
 
-//    //注册新用户
-//    @PostMapping("/register")
-//    public Boolean registerStuInfo(@RequestBody StuInfo stuInfo) {
-//        //向数据库中添加新用户
-//        int status = stuInfoMapper.insert(stuInfo);
-//        return status == 1;
-//    }
+    //注册新用户
+    @PostMapping("/register")
+    public Boolean registerStuInfo(@RequestBody StuInfo stuInfo) {
+        //向数据库中添加新用户
+        int status = stuInfoMapper.insert(stuInfo);
+        return status == 1;
+    }
 
     //更新用户信息
     @PutMapping("/update")
@@ -50,10 +51,26 @@ public class StuInfoController {
 
     //得到指定用户信息
     @PostMapping("/get")
-    public List<StuInfo> get(@RequestBody HashMap<String, Object> map) {
+    public List<HashMap<String, Object>> get(@RequestBody HashMap<String, Object> map) {
         List<User> userList = userMapper.selectByMap(map);
         if (Objects.equals(userList.get(0).getAuthority(), "admin")) {
-            return stuInfoMapper.selectList(null);
+            List<StuInfo> stuInfoList = stuInfoMapper.selectList(null);
+            List<HashMap<String, Object>> res = new ArrayList<>();
+            for (StuInfo stuInfo : stuInfoList) {
+                HashMap<String, Object> userMap = new HashMap<>();
+                userMap.put("username", stuInfo.getId());
+                List<User> user = userMapper.selectByMap(userMap);
+                HashMap<String, Object> item = new HashMap<>();
+                item.put("password", user.get(0).getPassword());
+                item.put("id", stuInfo.getId());
+                item.put("name", stuInfo.getName());
+                item.put("sex", stuInfo.getSex());
+                item.put("major", stuInfo.getMajor());
+                item.put("grade", stuInfo.getGrade());
+                item.put("authority", stuInfo.getAuthority());
+                res.add(item);
+            }
+            return res;
         }
         return null;
     }
