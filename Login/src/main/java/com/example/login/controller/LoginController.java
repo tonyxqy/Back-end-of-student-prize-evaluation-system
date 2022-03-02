@@ -51,4 +51,22 @@ public class LoginController {
         int status = userMapper.deleteByMap(map);
         return status == 1;
     }
+
+    @PostMapping("register")
+    public Boolean register(@RequestBody User user) {
+        return userMapper.insert(user) == 1;
+    }
+
+    @PutMapping("update")
+    public Boolean update(@RequestBody HashMap<String, Object> item) {
+        HashMap<String, Object>map = new HashMap<>();
+        map.put("username", item.get("username"));
+        List<User> userList = userMapper.selectByMap(map);
+        if (userList.isEmpty()) {
+            return false;
+        }
+        userList.get(0).setPassword(String.valueOf(item.get("password")));
+        userMapper.updateById(userList.get(0));
+        return true;
+    }
 }
